@@ -1,4 +1,4 @@
-let QueryBuilder = function(){
+let QueryCreator = function(){
 	var self = this;
 	let prepend = '';
 
@@ -40,9 +40,7 @@ let QueryBuilder = function(){
 				valuesText.push( '"' + values[i].toString() + '"');
             }
 		}
-		valuesText = self._join(valuesText);
-		columnsText = self._join(columnsText);
-		return self._next('INSERT INTO '+ table +'('+ columnsText +') VALUES('+valuesText+')');
+		return self._next('INSERT INTO '+ table +'('+ self._join(columnsText) +') VALUES('+self._join(valuesText)+')');
 	}
 	self.update = function( table, values ){
 		let valuesText = new Array();
@@ -54,8 +52,7 @@ let QueryBuilder = function(){
 				valuesText.push( i + ' = "' + values[i].toString() + '"');
             }
 		}
-		valuesText = self._join(valuesText);
-		return self._next('UPDATE '+table+' SET '+valuesText);
+		return self._next('UPDATE '+table+' SET '+self._join(valuesText));
 	}
 	
 	self.delete = function( table ){
@@ -85,8 +82,7 @@ let QueryBuilder = function(){
 		return self._next(' OR '+condition);
 	}
 	self.groupBy = function(fields='*'){
-		fields = self._join(fields);
-		return self._next(' GROUP BY '+fields);
+		return self._next(' GROUP BY '+self._join(fields));
 	}
 	self.orderBy = function(field, type = ''){
 		return self._next(' ORDER BY '+field+' '+type.toUpperCase() );
@@ -108,7 +104,7 @@ let QueryBuilder = function(){
 	}
 
 	self.val = function(callback){
-        var query = prepend.trim() + ';';
+        let query = prepend.trim() + ';';
         if( typeof callback == 'function' ){
             callback(query);
         }
@@ -117,5 +113,5 @@ let QueryBuilder = function(){
 }
 
 exports.new = function(){
-    return new QueryBuilder();
+    return new QueryCreator();
 }

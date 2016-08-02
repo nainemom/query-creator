@@ -1,24 +1,25 @@
 {
-  "name": "query-builder",
+  "name": "query-creator",
   "version": "0.0.1",
-  "description": "Sql query builder",
+  "description": "Create SQL queries",
   "main": "index.js",
   "scripts": {
     "test": "node ./test/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nainemom/query-builder.git"
+    "url": "git+https://github.com/nainemom/query-creator.git"
   },
   "keywords": [
     "sql",
     "query",
-    "query builder"
+    "query builder",
+    "query creator"
   ],
   "author": "nainemom <nainemom@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nainemom/query-builder/issues"
+    "url": "https://github.com/nainemom/query-creator/issues"
   },
-  "homepage": "https://github.com/nainemom/query-builder#readme"
+  "homepage": "https://github.com/nainemom/query-creator#readme"
 }
