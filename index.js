@@ -102,7 +102,10 @@ let QueryCreator = function(){
 	self.rightJoin = function(table,on){
 		return self._next(' RIGHT JOIN '+table+' ON '+on);
 	}
-
+	self.limit = function(from,to){
+		let limitText = typeof to == 'undefined'? from: (from + ', ' + to);
+		return self._next(' LIMIT '+limitText);
+	}
 	self.val = function(callback){
         let query = prepend.trim() + ';';
         if( typeof callback == 'function' ){
