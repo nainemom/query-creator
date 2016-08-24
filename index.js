@@ -106,11 +106,9 @@ let QueryCreator = function(){
 		let limitText = typeof to == 'undefined'? from: (from + ', ' + to);
 		return self._next(' LIMIT '+limitText);
 	}
-	self.val = function(callback){
-        let query = prepend.trim() + ';';
-        if( typeof callback == 'function' ){
-            callback(query);
-        }
+	self.val = function(semi){
+		semi = typeof semi == 'undefined'? true: semi;
+        let query = prepend.trim() + (semi?';':'');
 		return query;
 	}
 }
