@@ -42,6 +42,20 @@ let QueryCreator = function(){
 		}
 		return self._next('INSERT INTO '+ table +'('+ self._join(columnsText) +') VALUES('+self._join(valuesText)+')');
 	}
+	self.replace = function( table, values ){
+		let valuesText = new Array();
+		let columnsText = new Array();
+		for( let i in values ){
+			columnsText.push(i);
+			if( typeof values[i] == 'number' ){
+				valuesText.push( values[i] );
+            }
+			else{
+				valuesText.push( '"' + values[i].toString() + '"');
+            }
+		}
+		return self._next('REPLACE INTO '+ table +'('+ self._join(columnsText) +') VALUES('+self._join(valuesText)+')');
+	}
 	self.update = function( table, values ){
 		let valuesText = new Array();
 		for( let i in values ){
