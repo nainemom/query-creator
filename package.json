@@ -4,7 +4,8 @@
   "description": "Create SQL queries",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/index.js"
+    "test": "node ./test/index.js",
+    "build": "babel src -d ."
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/nainemom/query-creator/issues"
   },
-  "homepage": "https://github.com/nainemom/query-creator#readme"
+  "homepage": "https://github.com/nainemom/query-creator#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0"
+  },
+  "babel": {
+    "presets": ["latest"]
+  }
 }
